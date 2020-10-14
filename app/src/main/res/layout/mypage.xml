@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MypageActivity"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30sp"
+        android:layout_weight="0.4"
+        android:text="⛰️올라가봤니?"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0sp"
+        android:layout_weight="0.5"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="20sp"
+        android:layout_gravity="center"
+        android:text="60% 정복!\n100개 중 60개 완주"
+        android:textAlignment="center"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        android:onClick="gomountlist"
+        android:id="@+id/gomount"/>
+
+    <ProgressBar
+        android:id="@+id/progress2"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="328dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="0.2"
+        android:progress="20"
+        android:progressTint="#2ecc71" />
+
+
+    <ListView
+        android:id="@+id/listview1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.3"
+        android:layout_marginTop="10dp"
+        android:divider="@android:drawable/divider_horizontal_textfield"
+        android:dividerHeight="0.2dp"
+        android:entries="@array/myarray"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#3498db"
+        android:text="더보기"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:onClick="gonotelist"/>
+
+    <Button
+        android:layout_width="155dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="0.3"
+        android:background="#f1c40f"
+        android:text="등산인증"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
