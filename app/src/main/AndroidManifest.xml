@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-
-        <activity android:name=".MypageActivity">
+        <activity android:name=".JoinActivity"></activity>
+        <activity android:name=".NoteInsetActivity" />
+        <activity android:name=".NoteListActivity" />
+        <activity android:name=".MountListActivity" />
+        <activity android:name=".MypageActivity" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
