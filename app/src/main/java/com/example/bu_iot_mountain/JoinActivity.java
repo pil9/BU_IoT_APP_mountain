@@ -15,6 +15,9 @@ public class JoinActivity extends AppCompatActivity {
     private final String dbName = "iotdb";
     private final String tableName = "member";
 
+    LoginActivity.myDBHelper myHelper;
+    SQLiteDatabase sqlDB;//쿼리문 수행용
+
     EditText idText;
     EditText passText;
     String Id;
@@ -32,32 +35,37 @@ public class JoinActivity extends AppCompatActivity {
         idText = (EditText) findViewById(R.id.id);
         passText = (EditText) findViewById(R.id.pass);
 
+
+
     }
 
 
     public void members(View v) {
 
-        SQLiteDatabase ReadDB = this.openOrCreateDatabase(dbName, MODE_PRIVATE, null);
 
+        sqlDB=myHelper.getReadableDatabase();
+        Cursor cursor;
+        cursor=sqlDB.rawQuery("SELECT * FROM "+tableName+" WHERE id='"+idText+"'   ;",null);//select문 실행
 
-        //SELECT문을 사용하여 테이블에 있는 데이터를 가져옵니다.. 아이디 중복검색
-        Cursor c = ReadDB.rawQuery("SELECT * FROM " + tableName, null);
-        if(c == null){//중복없음 가입가능
+        if(cursor == null){//중복없음 가입가능
+            sqlDB.close();
+            cursor.close();
+            sqlDB=myHelper.getWritableDatabase();//쓰기전용db열기
+            sqlDB.execSQL("INSERT INTO groupTBL VALUES('"+idText+"',"+passText+");");
+            Toast.makeText(getApplicationContext(),"회원가입완료 ",Toast.LENGTH_LONG).show();
 
-            id = idText.getText().toString();
-            pw = passText.getText().toString();
+            Intent i1;
+            i1 = new Intent(this, MypageActivity.class);
+            startActivity(i1);
+            sqlDB.close();
 
-            iotdb.execSQL("INSERT INTO " + tableName + "(name, age, num, major) VALUES" +
-                    "("+"'"+id+"'"+","+pw+");");
-
-            Toast.makeText(this,"table :" + tableName + "생성",Toast.LENGTH_SHORT).show();
 
         }else{
-
+            sqlDB.close();
+            cursor.close();
+            Toast.makeText(getApplicationContext(),"중복된 아이디가 존재합니다. ",Toast.LENGTH_LONG).show();
         }
 
-
-        c.close();
 
 
     }
