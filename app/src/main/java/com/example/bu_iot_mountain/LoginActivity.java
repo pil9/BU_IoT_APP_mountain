@@ -51,10 +51,15 @@ public class LoginActivity extends AppCompatActivity {
         Cursor cursor;
         System.out.print("tableName:"+tableName +" id:"+ Id +" Pass:" + Pass);
         cursor=sqlDB.rawQuery("SELECT * FROM "+tableName+" WHERE id='"+Id.getText().toString()+"' and pw='"+Pass.getText().toString()+"'  ;",null);//select문 실행
-        if(cursor != null){//일치하는 정보없음 로그인 실
+
+        if(cursor == null){//일치하는 정보없음 로그인 실
+            cursor.close();
+            sqlDB.close();
             Toast.makeText(getApplicationContext(),"등록되지 않음 정보입니다 .",Toast.LENGTH_LONG).show();
         }
         else{
+            cursor.close();
+            sqlDB.close();
             Toast.makeText(getApplicationContext(),"로그인 성공 .",Toast.LENGTH_LONG).show();
 
             Intent i1;
@@ -62,8 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(i1);
 
         }
-        cursor.close();
-        sqlDB.close();
+
     }
 
     public void gojoin(View v){
@@ -88,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
         sqlDB.close();
     }
 
-    public class myDBHelper extends SQLiteOpenHelper {
+    public static class myDBHelper extends SQLiteOpenHelper {
         //테이블 생성
         public myDBHelper(Context context){
             super(context, "groupDB",null,1);
@@ -99,14 +103,14 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onCreate(SQLiteDatabase db) {//쿼리문 수행
-            db.execSQL("CREATE TABLE IF NOT EXISTS " + tableName
+            db.execSQL("CREATE TABLE IF NOT EXISTS member "
                     + " (id CHAR(20) PRIMARY KEY, pw CHAR(20) );");
 
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS "+tableName);//groupTBL존재시 테이블 지움
+            db.execSQL("DROP TABLE IF EXISTS member");//groupTBL존재시 테이블 지움
             onCreate(db);//테이블 다시 생성
 
         }
