@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -41,32 +42,35 @@ public class JoinActivity extends AppCompatActivity {
 
     }
 
-
+    private static final String TAG = "JoinActivity";//Log사용을 위해서 로그 태그 설정
     public void members(View v) {
 
 
         sqlDB=myHelper.getReadableDatabase();
         Cursor cursor;
         cursor=sqlDB.rawQuery("SELECT * FROM "+tableName+" WHERE id='"+idText.getText().toString()+"'   ;",null);//select문 실행
-
-       // if(cursor == null){//중복없음 가입가능
+        //가입할려는 아이디가 디비에 이미 존재하는지 select문으로 조회, 조회가 되면 이미 존재하는 아이디이고 없을경우 회원가입 가능
+        Log.d(TAG,"회원검색 카운트 "+cursor.getCount());
+        if(cursor.getCount() == 0) {//getCount가 0이면 일치하는 정보없음 회원가입 가능
+            Log.d(TAG, "아이디 없다 ");
             sqlDB.close();
             cursor.close();
-            sqlDB=myHelper.getWritableDatabase();//쓰기전용db열기
-            sqlDB.execSQL("INSERT INTO "+tableName+" VALUES('"+idText.getText().toString()+"',"+passText.getText().toString()+");");
-            Toast.makeText(getApplicationContext(),"회원가입완료 ",Toast.LENGTH_LONG).show();
 
-           /* Intent i1;
-            i1 = new Intent(this, MypageActivity.class);
-            startActivity(i1);*/
-            //sqlDB.close();
-
-
-        //}else{
-        //    sqlDB.close();
-        //    cursor.close();
-        //    Toast.makeText(getApplicationContext(),"중복된 아이디가 존재합니다. ",Toast.LENGTH_LONG).show();
-        //}
+            sqlDB = myHelper.getWritableDatabase();//쓰기전용db열기
+            sqlDB.execSQL("INSERT INTO " + tableName + " VALUES(null,'" + idText.getText().toString() + "'," + passText.getText().toString() + ");");
+            //insert문으로 회원 추가
+            Toast.makeText(getApplicationContext(), "회원가입완료 ", Toast.LENGTH_LONG).show();
+            sqlDB.close();
+            cursor.close();
+            /*로그인페이지로 이동 */
+            Intent i1;
+            i1 = new Intent(this, JoinActivity.class);
+            startActivity(i1);
+        }else{//중복되는 아이디가 존재 회원가입 실패
+            sqlDB.close();
+            cursor.close();
+            Toast.makeText(getApplicationContext(),"중복된 아이디가 존재합니다. ",Toast.LENGTH_LONG).show();
+        }
 
 
 
@@ -84,8 +88,8 @@ public class JoinActivity extends AppCompatActivity {
 
         @Override
         public void onCreate(SQLiteDatabase db) {//쿼리문 수행
-            db.execSQL("CREATE TABLE IF NOT EXISTS " + tableName
-                    + " (id CHAR(20) PRIMARY KEY, pw CHAR(20) );");
+            db.execSQL("CREATE TABLE IF NOT EXISTS member "
+                    + " (idx INTEGER PRIMARY KEY AUTOINCREMENT , id CHAR(20) , pw CHAR(20) );");
 
         }
 

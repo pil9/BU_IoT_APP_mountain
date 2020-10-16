@@ -10,8 +10,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,11 +27,14 @@ public class LoginActivity extends AppCompatActivity {
     EditText Id;
     EditText Pass;
 
+    Button btnInit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        btnInit=(Button)findViewById(R.id.btnInit);
 
         Id = (EditText) findViewById(R.id.idText);
         Pass = (EditText) findViewById(R.id.editTextTextPassword);
@@ -40,28 +45,47 @@ public class LoginActivity extends AppCompatActivity {
         myHelper=new myDBHelper(this);
         //sqlDB=myHelper.getReadableDatabase();
 
+        /*btnInit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //sqlDB=myHelper.getWritableDatabase();
+                //myHelper.onUpgrade(sqlDB,1,2);
+                //sqlDB.close();
+                //btnSelect.callOnClick();
 
+                sqlDB=myHelper.getWritableDatabase();//쓰기전용db열기
+                    sqlDB.execSQL("DROP TABLE IF EXISTS member;");
+
+                sqlDB.close();
+                Toast.makeText(getApplicationContext(),"수정됨",Toast.LENGTH_LONG).show();
+
+
+            }
+        });*/
 
 
 
     }
 
+    private static final String TAG = "LoginActivity";//Log사용을 위해서 로그 태그 설정
     public void gomypage(View v){
-        sqlDB=myHelper.getReadableDatabase();
+        sqlDB=myHelper.getReadableDatabase();//읽기모드로 디비 오픈
         Cursor cursor;
-        System.out.print("tableName:"+tableName +" id:"+ Id +" Pass:" + Pass);
         cursor=sqlDB.rawQuery("SELECT * FROM "+tableName+" WHERE id='"+Id.getText().toString()+"' and pw='"+Pass.getText().toString()+"'  ;",null);//select문 실행
-
-        if(cursor == null){//일치하는 정보없음 로그인 실
+        //입력한 아이디와 비밀번호를 select문으로 조회하여서 회원가입되어 있는지 확인
+        Log.d(TAG,"회원검색 카운트 "+cursor.getCount());
+        if(cursor.getCount() == 0){//getCount가 0이면 일치하는 정보없음 로그인 실패
+            Log.d(TAG,"아이디 없다 ");
             cursor.close();
             sqlDB.close();
             Toast.makeText(getApplicationContext(),"등록되지 않음 정보입니다 .",Toast.LENGTH_LONG).show();
         }
-        else{
+        else{//getCount가 0이 아니면 일치하는 정보있음 로그인 성공
             cursor.close();
             sqlDB.close();
             Toast.makeText(getApplicationContext(),"로그인 성공 .",Toast.LENGTH_LONG).show();
 
+            /*마이페이지로 화면이동*/
             Intent i1;
             i1 = new Intent(this, MypageActivity.class);
             startActivity(i1);
@@ -80,17 +104,22 @@ public class LoginActivity extends AppCompatActivity {
         sqlDB=myHelper.getReadableDatabase();
         Cursor cursor;
         cursor=sqlDB.rawQuery("SELECT * FROM member;",null);//select문 실행
-        String strNames="id"+"\r\n"+"-----------------------"+"\r\n";
-        String strNumbers="pw"+"\r\n"+"------------------------"+"\r\n";
+        String strNames="idx"+"\r\n"+"-----------------------"+"\r\n";
+        String strNumbers="id"+"\r\n"+"------------------------"+"\r\n";
+        String strNumbers2="pw"+"\r\n"+"------------------------"+"\r\n";
         while (cursor.moveToNext()){//다음 레코드가 있을동안 수행
             strNames+=cursor.getString(0)+"\r\n";
             strNumbers+=cursor.getString(1)+"\r\n";
+            strNumbers2+=cursor.getString(2)+"\r\n";
 
         }
-        Toast.makeText(getApplicationContext(),"로그확인."+strNames+" ",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"로그확인.idx: "+strNames+" id:"+strNumbers+" pw: "+strNumbers2+"",Toast.LENGTH_LONG).show();
         cursor.close();
         sqlDB.close();
     }
+
+
+
 
     public static class myDBHelper extends SQLiteOpenHelper {
         //테이블 생성
@@ -104,13 +133,13 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onCreate(SQLiteDatabase db) {//쿼리문 수행
             db.execSQL("CREATE TABLE IF NOT EXISTS member "
-                    + " (id CHAR(20) PRIMARY KEY, pw CHAR(20) );");
+                    + " (midx INTEGER PRIMARY KEY AUTOINCREMENT , id CHAR(20) , pw CHAR(20) );");
 
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS member");//groupTBL존재시 테이블 지움
+            db.execSQL("DROP TABLE IF EXISTS member");//member존재시 테이블 지움
             onCreate(db);//테이블 다시 생성
 
         }
