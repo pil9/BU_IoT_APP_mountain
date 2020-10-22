@@ -7,29 +7,145 @@
     tools:context=".NoteInsetActivity"
     android:orientation="vertical">
 
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30sp"
+        android:layout_weight="0.04"
+        android:text="⛰등산인증!"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        android:textStyle="bold" />-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0sp"
         android:layout_gravity="center"
         android:layout_marginTop="30sp"
-        android:layout_weight="0.2"
-        android:text="⛰등산인증!"
+        android:layout_weight="0.04"
+        android:text="⛰️등산인증! "
         android:textAlignment="center"
         android:textSize="50sp"
         android:textStyle="bold" />
 
-    <Button
-        android:layout_width="wrap_content"
+
+    <!--<TextView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:layout_gravity="right"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:background="#3498db"
-        android:text="뒤로"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:onClick="gomypage"
-        android:layout_marginBottom="30dp"/>
+        android:layout_weight="0.08"
+        android:text="현재위치 지도" />-->
+
+    <LinearLayout
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08"
+        android:orientation="horizontal"
+        >
+        <!--<fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             />-->
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.04"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📷"
+            android:textSize="70dp"
+            android:layout_marginLeft="40dp"
+            android:onClick="pick"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사진 올리기"
+            android:textSize="40dp"
+            android:layout_marginLeft="50dp"
+            android:onClick="pick"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08"
+        android:orientation="vertical"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:hint="제목 "
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:breakStrategy="high_quality"
+            android:hint="내용 "
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.03"
+        android:orientation="horizontal"
+        >
+
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_weight="0.02"
+            android:background="#16EC2C"
+            android:onClick="gomypage"
+            android:text="등록!"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.02"
+
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#3498db"
+            android:text="뒤로"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:onClick="gomypage"
+            android:layout_marginBottom="30dp"/>
+
+
+
+
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

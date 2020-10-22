@@ -80,7 +80,8 @@
         android:text="등산인증"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:onClick="noteinsert"/>
 
 
 </LinearLayout>
