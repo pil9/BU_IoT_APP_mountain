@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
+    static int useridx;
     //private final String dbName = "iotdb";
     private final String tableName = "member";
 
@@ -81,6 +82,9 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"등록되지 않음 정보입니다 .",Toast.LENGTH_LONG).show();
         }
         else{//getCount가 0이 아니면 일치하는 정보있음 로그인 성공
+            cursor.moveToFirst();
+            useridx = cursor.getInt(0);
+            Log.d(TAG,"로그인 유저 인덱스값: "+useridx);
             cursor.close();
             sqlDB.close();
             Toast.makeText(getApplicationContext(),"로그인 성공 .",Toast.LENGTH_LONG).show();
@@ -117,6 +121,24 @@ public class LoginActivity extends AppCompatActivity {
         cursor.close();
         sqlDB.close();
     }
+    public void viewnote(View v){
+        sqlDB=myHelper.getReadableDatabase();
+        Cursor cursor;
+        cursor=sqlDB.rawQuery("SELECT * FROM note;",null);//select문 실행
+        String strNames="title"+"\r\n"+"-----------------------"+"\r\n";
+        String strNumbers="context"+"\r\n"+"------------------------"+"\r\n";
+        String strNumbers2="img"+"\r\n"+"------------------------"+"\r\n";
+        while (cursor.moveToNext()){//다음 레코드가 있을동안 수행
+            strNames+=cursor.getString(0)+"\r\n";
+            strNumbers+=cursor.getString(1)+"\r\n";
+            strNumbers2+=cursor.getString(2)+"\r\n";
+
+        }
+        Toast.makeText(getApplicationContext(),"로그확인.idx: "+strNames+" id:"+strNumbers+" pw: "+strNumbers2+"",Toast.LENGTH_LONG).show();
+        cursor.close();
+        sqlDB.close();
+    }
+
 
 
 
@@ -134,12 +156,15 @@ public class LoginActivity extends AppCompatActivity {
         public void onCreate(SQLiteDatabase db) {//쿼리문 수행
             db.execSQL("CREATE TABLE IF NOT EXISTS member "
                     + " (midx INTEGER PRIMARY KEY AUTOINCREMENT , id CHAR(20) , pw CHAR(20) );");
+            db.execSQL("CREATE TABLE IF NOT EXISTS note"
+                    +"(nidx INTEGER PRIMARY KEY AUTOINCREMENT , title CHAR(50), context TEXT, img TEXT, useridx INTEGER, mountidx INTEGER)");
 
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             db.execSQL("DROP TABLE IF EXISTS member");//member존재시 테이블 지움
+            db.execSQL("DROP TABLE IF EXISTS note");
             onCreate(db);//테이블 다시 생성
 
         }
