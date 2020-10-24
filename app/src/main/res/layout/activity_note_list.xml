@@ -19,21 +19,16 @@
         android:textStyle="bold" />
 
     <ListView
-        android:id="@+id/listview1"
+        android:id="@+id/noticeListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.7"
         android:layout_marginTop="10dp"
-        android:divider="@android:drawable/divider_horizontal_textfield"
-        android:dividerHeight="0.2dp"
-        android:entries="@array/myarray"
+        android:divider="#ffffff"
+        android:dividerHeight="10dp"
         />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:text="-1 2 3 4 5-"/>
+
 
     <Button
         android:layout_width="wrap_content"
