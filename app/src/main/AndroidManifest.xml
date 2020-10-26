@@ -32,18 +32,20 @@
 
 
 
-        <activity android:name=".JoinActivity"></activity>
+        <activity android:name=".JoinActivity">
+
+        </activity>
         <activity android:name=".NoteInsetActivity" />
         <activity android:name=".NoteListActivity" />
         <activity android:name=".MountListActivity">
+
+        </activity>
+        <activity android:name=".MypageActivity" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".MypageActivity" />
-        <activity android:name=".LoginActivity">
-
         </activity>
     </application>
 

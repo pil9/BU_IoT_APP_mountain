@@ -45,12 +45,6 @@ public class NoteInsetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_inset);
 
-        /*MapView mapView = new MapView(this);
-
-        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
-        mapViewContainer.addView(mapView);*/
-
-        //mapView = findViewById(R.id.map_view);
 
         title = (EditText) findViewById(R.id.title);
         context = (EditText) findViewById(R.id.context);
@@ -76,7 +70,7 @@ public class NoteInsetActivity extends AppCompatActivity {
     }
 
     public void insertnote(View v){
-        Log.d(TAG, "디비 넣ㅇ기  ");
+        Log.d(TAG, "디비 넣기  ");
 
         sqlDB = myHelper.getWritableDatabase();//쓰기전용db열기
 
@@ -86,8 +80,9 @@ public class NoteInsetActivity extends AppCompatActivity {
         Log.d(TAG,"uri : "+ uri.toString());
         Log.d(TAG,"useridx : "+ useridx);
 
-        sqlDB.execSQL("INSERT INTO " + tableName + " VALUES(null,'" + title.getText().toString() + "','" + context.getText().toString() + "','" + uri.toString() + "'," + useridx + ",1);");
-        //insert문으로 회원 추가
+        sqlDB.execSQL("INSERT INTO " + tableName + " VALUES(null,'" + title.getText().toString() + "','"
+                + context.getText().toString() + "','" + uri.toString() + "'," + useridx + ",1);");
+        //insert문으로 인증게시물 추가
         Toast.makeText(getApplicationContext(), "인증완료! ", Toast.LENGTH_LONG).show();
         sqlDB.close();
 
@@ -100,7 +95,7 @@ public class NoteInsetActivity extends AppCompatActivity {
 
     public void onClickButton1(View view){
         Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);//미디어 저장소 접근
         startActivityForResult(intent, REQUEST_CODE);
 
     }
@@ -108,13 +103,13 @@ public class NoteInsetActivity extends AppCompatActivity {
     @Override
     protected  void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
-        if (requestCode == REQUEST_CODE) {
-            uri = data.getData();
+        if (requestCode == REQUEST_CODE) {//사진 선택 완료
+            uri = data.getData();//사진 저장 url주소 변수에 저장
             TextView igroup1 = (TextView)findViewById(R.id.iv_view);
-            igroup1.setText(uri.toString());
+            igroup1.setText(uri.toString());//url주소 textview로 표시
         }
     }
-    private void setImage(Uri uri) {
+    private void setImage(Uri uri) {//imageview를 선택한 사진으로 변경
         try{
             InputStream in = getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(in);

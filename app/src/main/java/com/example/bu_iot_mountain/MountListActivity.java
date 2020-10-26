@@ -24,10 +24,10 @@ public class MountListActivity extends AppCompatActivity {
         noticeListView = (ListView) findViewById(R.id.noticeListView);
         noticeList = new ArrayList<Notice>();
         noticeList.add(new Notice("1번게시글","김철수","2020-10-24"));
-        noticeList.add(new Notice("1번게시글","박영희","2020-10-24"));
-        noticeList.add(new Notice("1번게시글","홍길동","2020-10-24"));
-        noticeList.add(new Notice("1번게시글","김범중","2020-10-24"));
-        noticeList.add(new Notice("1번게시글","이정필","2020-10-24"));
+        noticeList.add(new Notice("2번게시글","박영희","2020-10-24"));
+        noticeList.add(new Notice("3번게시글","홍길동","2020-10-24"));
+        noticeList.add(new Notice("4번게시글","김범중","2020-10-24"));
+        noticeList.add(new Notice("5번게시글","이정필","2020-10-24"));
 
 
         Adapter = new NoticeListAdt(getApplicationContext(), noticeList);

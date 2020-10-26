@@ -31,7 +31,7 @@ public class MypageActivity extends AppCompatActivity {
 
     public void gonotelist(View v){
         Intent i1;
-        i1 = new Intent(this, NoteListActivity.class);
+        i1 = new Intent(this, MountListActivity.class);
         startActivity(i1);
     }
 
