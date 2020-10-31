@@ -41,4 +41,13 @@ public class MypageActivity extends AppCompatActivity {
         startActivity(i1);
     }
 
+    public void godetailnote(View v){
+        Intent i1;
+        i1 = new Intent(this, NoteDetailActivity.class);
+        startActivity(i1);
+    }
+
+
+
+
 }

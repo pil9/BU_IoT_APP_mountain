@@ -17,7 +17,8 @@
         android:text="⛰️올라가봤니?"
         android:textAlignment="center"
         android:textSize="50sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:onClick="godetailnote"/>
 
 
     <TextView
