@@ -44,6 +44,27 @@ public class LoginActivity extends AppCompatActivity {
         //Pass = editTextTextPassword.getText().toString();
 
         myHelper=new myDBHelper(this);
+
+        sqlDB=myHelper.getReadableDatabase();
+        Cursor cursor;
+        cursor=sqlDB.rawQuery("SELECT * FROM mount   ;",null);//select문 실행
+        Log.d(TAG,"산 있나? 카운트 "+cursor.getCount());
+        if(cursor.getCount() == 0) {
+            //산 데이터 삽입
+            sqlDB = myHelper.getWritableDatabase();//쓰기전용db열기
+            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'관악산','서울특별시');");
+            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'도봉산','서울특별시');");
+            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'북한산','서울특별시');");
+            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'수락산','서울특별시');");
+            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'불암산','서울특별시');");
+            //insert문으로 회원 추가
+            Toast.makeText(getApplicationContext(), "산목록 추가 ", Toast.LENGTH_LONG).show();
+            sqlDB.close();
+            cursor.close();
+        }
+
+
+
         //sqlDB=myHelper.getReadableDatabase();
 
         /*btnInit.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +179,8 @@ public class LoginActivity extends AppCompatActivity {
                     + " (midx INTEGER PRIMARY KEY AUTOINCREMENT , id CHAR(20) , pw CHAR(20) );");
             db.execSQL("CREATE TABLE IF NOT EXISTS note"
                     +"(nidx INTEGER PRIMARY KEY AUTOINCREMENT , title CHAR(50), context TEXT, img TEXT, useridx INTEGER, mountidx INTEGER)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS mount "
+                    + " (mmidx INTEGER PRIMARY KEY AUTOINCREMENT , name CHAR(20) , point CHAR(20) );");
 
         }
 

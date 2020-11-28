@@ -13,8 +13,10 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,8 @@ import net.daum.mf.map.api.MapView;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.bu_iot_mountain.LoginActivity.useridx;
 
@@ -36,6 +40,7 @@ public class NoteInsetActivity extends AppCompatActivity {
     EditText title;
     EditText context;
 
+    Spinner s;
 
     private MapView mapView;
 
@@ -50,6 +55,23 @@ public class NoteInsetActivity extends AppCompatActivity {
         context = (EditText) findViewById(R.id.context);
 
         myHelper=new LoginActivity.myDBHelper(this);
+
+
+        sqlDB=myHelper.getReadableDatabase();//읽기모드로 디비 오픈
+        Cursor cursor;
+        cursor=sqlDB.rawQuery("SELECT * FROM mount ;",null);//select문 실행
+        List plist = new ArrayList();
+        while(cursor.moveToNext()){
+            String eng = cursor.getString(1);
+            plist.add(eng);
+        }
+
+        s =(Spinner)findViewById(R.id.spinner_m);
+        ArrayAdapter dataA = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item, plist);
+        s.setAdapter(dataA);
+
+
+
 
     }
 
@@ -70,6 +92,12 @@ public class NoteInsetActivity extends AppCompatActivity {
     }
 
     public void insertnote(View v){
+        String mountname = s.getSelectedItem().toString();
+        Cursor cursor;
+        cursor=sqlDB.rawQuery("SELECT * FROM mount WHERE name='"+mountname+"'   ;",null);//select문 실행
+        cursor.moveToFirst();
+        int mountidx = cursor.getInt(0);
+
         Log.d(TAG, "디비 넣기  ");
 
         sqlDB = myHelper.getWritableDatabase();//쓰기전용db열기
@@ -79,12 +107,17 @@ public class NoteInsetActivity extends AppCompatActivity {
         Log.d(TAG,"context : "+ context.getText().toString());
         Log.d(TAG,"uri : "+ uri.toString());
         Log.d(TAG,"useridx : "+ useridx);
+        Log.d(TAG,"mountidx : "+ mountidx);
 
         sqlDB.execSQL("INSERT INTO " + tableName + " VALUES(null,'" + title.getText().toString() + "','"
-                + context.getText().toString() + "','" + uri.toString() + "'," + useridx + ",1);");
+                + context.getText().toString() + "','" + uri.toString() + "'," + useridx + ","+mountidx+");");
         //insert문으로 인증게시물 추가
         Toast.makeText(getApplicationContext(), "인증완료! ", Toast.LENGTH_LONG).show();
         sqlDB.close();
+
+        Intent i1;
+        i1 = new Intent(this, MypageActivity.class);
+        startActivity(i1);
 
     }
 
