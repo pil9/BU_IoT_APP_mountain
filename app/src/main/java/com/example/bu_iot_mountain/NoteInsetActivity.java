@@ -155,6 +155,7 @@ public class NoteInsetActivity extends AppCompatActivity {
     private void dispatchTakePictureIntent() {
         Log.d(TAG, "사진버튼클릭 들어옴 ");
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        takePictureIntent.setType(MediaStore.Images.Media.CONTENT_TYPE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             Log.d(TAG, "사진촬영 작동 ");
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
@@ -180,7 +181,7 @@ public class NoteInsetActivity extends AppCompatActivity {
         Log.d(TAG, "mountidx : " + mountidx);
 
         sqlDB.execSQL("INSERT INTO " + tableName + " VALUES(null,'" + title.getText().toString() + "','"
-                + context.getText().toString() + "','" + uri.toString() + "'," + useridx + "," + mountidx + ");");
+                + context.getText().toString() + "','" + stringUri + "'," + useridx + "," + mountidx + ");");
         //insert문으로 인증게시물 추가
         Toast.makeText(getApplicationContext(), "인증완료! ", Toast.LENGTH_LONG).show();
         sqlDB.close();
@@ -195,10 +196,11 @@ public class NoteInsetActivity extends AppCompatActivity {
     static final int REQUEST_CODE = 1;
     ImageView imageView;
     Uri uri;
+    String stringUri;
 
     public void onClickButton1(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);//미디어 저장소 접근
+        intent.setType("image/*");//미디어 저장소 접근
         startActivityForResult(intent, REQUEST_CODE);
 
     }
@@ -208,9 +210,26 @@ public class NoteInsetActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {//사진 선택 완료
             uri = data.getData();//사진 저장 url주소 변수에 저장
+            String file_path = uri_path(uri);
+            Log.d(TAG, "URL변환 :  "+file_path);
+            stringUri = file_path;
             TextView igroup1 = (TextView) findViewById(R.id.iv_view);
-            igroup1.setText(uri.toString());//url주소 textview로 표시
+            igroup1.setText(stringUri);//url주소 textview로 표시
+            //setImage(uri);
         }
+    }
+
+    private String uri_path(Uri uri){
+        String res = null;
+        String[] image_data = { MediaStore.Images.Media.DATA };
+        Cursor cur = getContentResolver().query(uri, image_data, null, null, null);
+
+        if(cur.moveToFirst()){
+            int col = cur.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cur.getString(col);
+        }
+        cur.close();
+        return res;
     }
 
     private void setImage(Uri uri) {//imageview를 선택한 사진으로 변경
