@@ -12,7 +12,7 @@
         android:layout_height="0sp"
         android:layout_gravity="center"
         android:layout_marginTop="30sp"
-        android:layout_weight="0.012"
+        android:layout_weight="0.0126"
         android:text="⛰️등산게시물 "
         android:textAlignment="center"
         android:textSize="50sp"
@@ -46,8 +46,8 @@
 
     <ImageView
         android:id="@+id/iimg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
         android:layout_weight="0.03"
         android:layout_gravity="center"
         android:src="@mipmap/ic_launcher" />
@@ -65,18 +65,20 @@
             android:layout_weight="0.1">
 
 
-        <TextView
+        <EditText
+            android:id="@+id/comment"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:textSize="30dp"
-            android:text="댓글입력"/>
+            android:textSize="20dp"
+            android:hint="댓글입력"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="입력"
-            android:textSize="30dp"
+            android:textSize="20dp"
+            android:onClick="commentinsert"
             />
 
         </LinearLayout>
@@ -87,13 +89,14 @@
             android:layout_weight="3">
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:fillViewport="true">
 
                 <ListView
-                    android:id="@+id/listview1"
+                    android:id="@+id/listview1e"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1.3"
+                    android:layout_height="400dp"
+
                     android:layout_marginTop="10dp"
                     android:divider="@android:drawable/divider_horizontal_textfield"
                     android:dividerHeight="0.2dp"

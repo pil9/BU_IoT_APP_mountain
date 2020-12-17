@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,13 +18,20 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.LinkedList;
+
+import static com.example.bu_iot_mountain.LoginActivity.useridx;
 
 
 public class NoteDetailActivity extends AppCompatActivity {
@@ -37,8 +45,13 @@ public class NoteDetailActivity extends AppCompatActivity {
     TextView title;
     TextView context;
     ImageView iimg;
+    EditText comment;
+    static LinkedList<String> comtitle = new LinkedList();
+    ListView listView;
+    myAdapters adapter;
 
     private static final String TAG = "NoteDetailActivity";//Log사용을 위해서 로그 태그 설정
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +65,13 @@ public class NoteDetailActivity extends AppCompatActivity {
 
         myHelper=new LoginActivity.myDBHelper(this);
 
+        listView = (ListView) findViewById(R.id.listview1e);
+
+        adapter = new myAdapters();
+        listView.setAdapter(adapter);
 
         permissionCheck();
+        commentlist();
     }
 
 
@@ -91,45 +109,23 @@ public class NoteDetailActivity extends AppCompatActivity {
     public void viewdeatilnote(){
         sqlDB=myHelper.getReadableDatabase();
         Cursor cursor;
+
         cursor=sqlDB.rawQuery("SELECT * FROM note WHERE nidx="+noteidx+";",null);//select문 실행
 
         while (cursor.moveToNext()){//다음 레코드가 있을동안 수행
             title.setText(cursor.getString(1));//제목데이터 텍스트뷰에 넣어주기
-            context.setText(cursor.getString(3));//내용데이터 텍스트뷰에 넣어주기
-            //String UUrl = cursor.getString(3);
-            //Toast.makeText(getApplicationContext(), "사진확인 ! "+UUrl, Toast.LENGTH_LONG).show();
-            //iimg.setImageURI(Uri.parse(UUrl));
-
-          /*  String fileName = cursor.getString(3);
-            File file = new File(fileName);//절대값 경로*/
-
+            context.setText(cursor.getString(2));//내용데이터 텍스트뷰에 넣어주기
             Uri uri = Uri.parse("file://"+cursor.getString(3));
-           // Log.d(TAG, "uriname : "+ uriname);
-           // Uri uri = Uri.parse("file:/" + Environment.getExternalStorageDirectory() + uriname);
             Log.d(TAG, "uri : "+ uri);
             setImage(uri,iimg);
-            //iimg.setImageURI(uri);
-            //setImage(uri);
-/*            String file_path = uri_path(uriname);
-            iimg.setImageURI(uriname);*/
-            //setImage(uriname);
-
-
-
-            /*Bitmap image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriname);
-            //ImageView image = (ImageView)findViewById(R.id.imageView1); //배치해놓은 ImageView에 set image.setImageBitmap(image_bitmap);
-            iimg.setImageBitmap(image_bitmap);*/
-
-          //  Uri uri = Uri.parse("file:///" + Environment.getExternalStorageDirectory() + "/572/내그림/image_sample.jpg");
-        //    iimg.setImageURI(uri);
-
         }
-        //Toast.makeText(getApplicationContext(),"로그확인.idx: "+strNames+" id:"+strNumbers+" pw: "+strNumbers2+"",Toast.LENGTH_LONG).show();
+
         cursor.close();
         sqlDB.close();
+
     }
 
-    private void setImage(Uri uri) {
+    /*private void setImage(Uri uri) {
         try{
             InputStream in = getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(in);
@@ -137,6 +133,74 @@ public class NoteDetailActivity extends AppCompatActivity {
         } catch (FileNotFoundException e){
             e.printStackTrace();
         }
+    }*/
+
+    public void commentinsert(View view) {//댓글 입력버튼 클릭
+        comment = (EditText) findViewById(R.id.comment);
+        String comStr = comment.getText().toString();
+        Log.d(TAG, "댓글 확인 : "+ comStr);
+        sqlDB = myHelper.getWritableDatabase();//쓰기전용db열기
+        sqlDB.execSQL("INSERT INTO comment VALUES(null,'" + useridx + "','"
+                + noteidx + "','" + comStr + "');");
+        //insert문으로 댓글  추가
+        sqlDB.close();
+        Toast.makeText(getApplicationContext(), "댓글등록 완료! ", Toast.LENGTH_LONG).show();
+        commentlist();
     }
+
+    public void commentlist(){
+
+        sqlDB=myHelper.getReadableDatabase();
+        Cursor cursor;
+
+        comtitle.clear();
+        cursor=sqlDB.rawQuery("SELECT * FROM comment WHERE noteidx="+noteidx+";",null);//select문 실행
+        String strNames="com1"+"\r\n"+"-----------------------"+"\r\n";
+        String strNumbers="com2"+"\r\n"+"------------------------"+"\r\n";
+        String strNumbers2="com3"+"\r\n"+"------------------------"+"\r\n";
+        while (cursor.moveToNext()){//다음 레코드가 있을동안 수행
+            strNames+=cursor.getString(0)+"\r\n";
+            strNumbers+=cursor.getString(1)+"\r\n";
+            strNumbers2+=cursor.getString(3)+"\r\n";
+            comtitle.add(cursor.getString(3));
+        }
+        //Toast.makeText(getApplicationContext(),"댓글확인.ㅂ: "+strNames+" ㅈ:"+strNumbers+" ㄷ: "+strNumbers2+"",Toast.LENGTH_LONG).show();
+
+        cursor.close();
+        sqlDB.close();
+    }
+
+    class myAdapters extends BaseAdapter {
+        @Override
+        public int getCount() {
+            return comtitle.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return comtitle.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            conView view = new conView(getApplicationContext());
+
+            //TextView view = new TextView(getApplicationContext());
+            //view.setText(fruits[position]);
+            view.setFruit(comtitle.get(position));
+            //view.setPrice(price[position]);
+            //view.setTextSize(50.0f);
+            //view.setTextColor(Color.BLUE);
+            return view;
+        }
+    }
+
+
+
 
 }

@@ -214,7 +214,7 @@ public class NoteInsetActivity extends AppCompatActivity {
             Log.d(TAG, "URL변환 :  "+file_path);
             stringUri = file_path;
             TextView igroup1 = (TextView) findViewById(R.id.iv_view);
-            igroup1.setText(stringUri);//url주소 textview로 표시
+            igroup1.setText("등록완료!");//url주소 textview로 표시
             //setImage(uri);
         }
     }

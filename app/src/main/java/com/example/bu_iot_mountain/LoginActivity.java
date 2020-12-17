@@ -181,6 +181,8 @@ public class LoginActivity extends AppCompatActivity {
                     +"(nidx INTEGER PRIMARY KEY AUTOINCREMENT , title CHAR(50), context TEXT, img TEXT, useridx INTEGER, mountidx INTEGER)");
             db.execSQL("CREATE TABLE IF NOT EXISTS mount "
                     + " (mmidx INTEGER PRIMARY KEY AUTOINCREMENT , name CHAR(20) , point CHAR(20) );");
+            db.execSQL("CREATE TABLE IF NOT EXISTS comment "
+                    + " (cidx INTEGER PRIMARY KEY AUTOINCREMENT , useridx INTEGER , noteidx INTEGER , ccontext CHAR(20) );");
 
         }
 

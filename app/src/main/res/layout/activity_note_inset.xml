@@ -99,7 +99,7 @@
             android:text="사진 올리기"
             android:textSize="40dp"
             android:layout_marginLeft="50dp"
-            android:onClick="pick"
+            android:onClick="onClickButton1"
             />
 
     </LinearLayout>

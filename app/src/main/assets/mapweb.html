@@ -6,7 +6,7 @@
     <title>현재위치</title>
 
     <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ead1319d48ea8e99d80d2c27b9c2465f"></script>
-    <script type="text/JavaScript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
             function getLocation(position) {
@@ -19,8 +19,8 @@
                       center : new daum.maps.LatLng(latitud, longitude)    // 지도의 중심좌표
                     , level : 3    // 지도의 확대레벨
                 };
-                
-                $('#point').html(latitud+',,,'+longitude);
+                console.log("웹뷰 진입 확인");
+
 
                 // 지도를 생성
                 var map = new daum.maps.Map(mapContainer, mapOption);
@@ -47,8 +47,9 @@
 
 </head>
 <body>
-<!--<div id="point" style="width:100px;height:50px;"></div>-->
 <div id="map" style="width:400px;height:150px;"></div>
+<div id="point" style="width:100px;height:50px;">좌표</div>
+
 
 </body>
 </html>
