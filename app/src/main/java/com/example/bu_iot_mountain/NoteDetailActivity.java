@@ -39,7 +39,7 @@ public class NoteDetailActivity extends AppCompatActivity {
     LoginActivity.myDBHelper myHelper;
     SQLiteDatabase sqlDB;//쿼리문 수행용
 
-    private static final int MY_PERMISSION_REQUEST_LOCATION = 0;
+    private static final int MY_PERMISSION_REQUEST_FILE = 0;
 
     int noteidx = 1;//게시물 클릭시 받아오는 게시물 인덱스
     TextView title;
@@ -70,30 +70,30 @@ public class NoteDetailActivity extends AppCompatActivity {
         adapter = new myAdapters();
         listView.setAdapter(adapter);
 
-        permissionCheck();
+        permissionCheck_img();
         commentlist();
     }
 
 
-    private void permissionCheck() {
+    private void permissionCheck_img() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "승낙1 : ");
             //Manifest.permission.ACCESS_FINE_LOCATION 접근 승낙 상태 일때
             viewdeatilnote();
         } else { //Manifest.permission.ACCESS_FINE_LOCATION 접근 거절 상태 일때 //사용자에게 접근권한 설정을 요구하는 다이얼로그를 띄운다.
             Log.d(TAG, "승낙2 : ");
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSION_REQUEST_LOCATION);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSION_REQUEST_FILE);
         }
     }
 
-    @Override
+    /*@Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == MY_PERMISSION_REQUEST_LOCATION) {
             Log.d(TAG, "승낙 후 1111 : ");
             viewdeatilnote();
         }
-    }
+    }*/
 
     private void setImage(Uri uri,ImageView img) {
         try{
@@ -125,7 +125,7 @@ public class NoteDetailActivity extends AppCompatActivity {
 
     }
 
-    /*private void setImage(Uri uri) {
+   /* private void setImage(Uri uri) {
         try{
             InputStream in = getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(in);
