@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btnInit=(Button)findViewById(R.id.btnInit);
+        //btnInit=(Button)findViewById(R.id.btnInit);
 
         Id = (EditText) findViewById(R.id.idText);
         Pass = (EditText) findViewById(R.id.editTextTextPassword);
@@ -178,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
             db.execSQL("CREATE TABLE IF NOT EXISTS member "
                     + " (midx INTEGER PRIMARY KEY AUTOINCREMENT , id CHAR(20) , pw CHAR(20) );");
             db.execSQL("CREATE TABLE IF NOT EXISTS note"
-                    +"(nidx INTEGER PRIMARY KEY AUTOINCREMENT , title CHAR(50), context TEXT, img TEXT, useridx INTEGER, mountidx INTEGER)");
+                    +"(nidx INTEGER PRIMARY KEY AUTOINCREMENT , title CHAR(50), context TEXT, img TEXT, useridx INTEGER, mountidx INTEGER, ndate TEXT)");
             db.execSQL("CREATE TABLE IF NOT EXISTS mount "
                     + " (mmidx INTEGER PRIMARY KEY AUTOINCREMENT , name CHAR(20) , point CHAR(20) );");
             db.execSQL("CREATE TABLE IF NOT EXISTS comment "

@@ -64,7 +64,7 @@ public class JoinActivity extends AppCompatActivity {
             cursor.close();
             /*로그인페이지로 이동 */
             Intent i1;
-            i1 = new Intent(this, JoinActivity.class);
+            i1 = new Intent(this, LoginActivity.class);
             startActivity(i1);
         }else{//중복되는 아이디가 존재 회원가입 실패
             sqlDB.close();

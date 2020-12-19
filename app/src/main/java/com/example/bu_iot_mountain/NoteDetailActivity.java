@@ -41,7 +41,7 @@ public class NoteDetailActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSION_REQUEST_FILE = 0;
 
-    int noteidx = 1;//게시물 클릭시 받아오는 게시물 인덱스
+    int noteidx;//게시물 클릭시 받아오는 게시물 인덱스
     TextView title;
     TextView context;
     ImageView iimg;
@@ -57,6 +57,9 @@ public class NoteDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_detail);
+
+        Intent secondIntent = getIntent();
+        noteidx =Integer.parseInt( secondIntent.getStringExtra("detailnidx") );
 
         title = (TextView)findViewById(R.id.title);
         context = (TextView)findViewById(R.id.context);

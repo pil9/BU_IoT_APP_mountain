@@ -181,7 +181,7 @@ public class NoteInsetActivity extends AppCompatActivity {
         Log.d(TAG, "mountidx : " + mountidx);
 
         sqlDB.execSQL("INSERT INTO " + tableName + " VALUES(null,'" + title.getText().toString() + "','"
-                + context.getText().toString() + "','" + stringUri + "'," + useridx + "," + mountidx + ");");
+                + context.getText().toString() + "','" + stringUri + "'," + useridx + "," + mountidx + ",(select datetime('now', 'localtime')));");
         //insert문으로 인증게시물 추가
         Toast.makeText(getApplicationContext(), "인증완료! ", Toast.LENGTH_LONG).show();
         sqlDB.close();

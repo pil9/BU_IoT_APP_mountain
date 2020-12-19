@@ -17,7 +17,7 @@
         android:drawableLeft="@drawable/ic_baseline_textsms_24"
         android:drawablePadding="5dp"
         android:background="@color/colorNoticeName"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,6 +45,7 @@
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:id="@+id/dateText"/>
+
 
     </LinearLayout>
 
