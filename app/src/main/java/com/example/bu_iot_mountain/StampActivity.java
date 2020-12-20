@@ -1,21 +1,29 @@
 package com.example.bu_iot_mountain;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import static com.example.bu_iot_mountain.LoginActivity.useridx;
 import static com.example.bu_iot_mountain.MypageActivity.fruits;
 import static com.example.bu_iot_mountain.MypageActivity.iimg;
 import static com.example.bu_iot_mountain.MypageActivity.price;
 import static com.example.bu_iot_mountain.QRcodeActivity.stamp_data;
 
 public class StampActivity extends AppCompatActivity {
+
+    LoginActivity.myDBHelper myHelper;
+    SQLiteDatabase sqlDB;//쿼리문 수행용
+
     ImageView imageView;
     Button button;
     TextView textview;
@@ -31,13 +39,28 @@ public class StampActivity extends AppCompatActivity {
 //        imageView = (ImageView)findViewById(R.id.imageview);
         button = (Button)findViewById(R.id.button);
 
+        myHelper=new LoginActivity.myDBHelper(this);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                fruits.addFirst("보탑사 스탬프");
-                price.addFirst("(12월5일까지) 기념품관 20% 할인 쿠폰");
-                iimg.addFirst("stamp1");
+
+                sqlDB = myHelper.getReadableDatabase();
+                //Cursor cursor2;
+                fruits.clear();
+                price.clear();
+
+                sqlDB.execSQL("INSERT INTO stamp VALUES(null,'" + useridx + "','"
+                        + stamp_data + "','산장 20% 할인');");
+                //insert문으로 인증게시물 추가
+                Toast.makeText(getApplicationContext(), "스탬프 획득! ", Toast.LENGTH_LONG).show();
+
+                sqlDB.close();
+
+                //fruits.addFirst("보탑사 스탬프");
+                //price.addFirst("(12월5일까지) 기념품관 20% 할인 쿠폰");
+                //iimg.addFirst("stamp1");
 
                 finish();
 
