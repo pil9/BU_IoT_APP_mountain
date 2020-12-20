@@ -49,13 +49,21 @@
         <activity android:name=".MountListActivity"></activity>
         <activity android:name=".menuActivity"></activity>
         <activity android:name=".MypageActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".WeatherActivity">
+        <activity android:name=".CaptureAct" />
+        <activity android:name=".StampActivity" />
+        <activity android:name=".QRcodeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".LoginActivity">
+
+        </activity>
+        <activity android:name=".WeatherActivity">
+
         </activity>
     </application>
 
