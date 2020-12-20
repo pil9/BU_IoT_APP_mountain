@@ -16,7 +16,7 @@
         android:drawableStart="@drawable/ic_baseline_textsms_24"
         android:drawableLeft="@drawable/ic_baseline_textsms_24"
         android:drawablePadding="5dp"
-        android:background="@color/colorNoticeName"
+        android:background="#3498db"
         android:textStyle="bold" />
 
     <LinearLayout
