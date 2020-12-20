@@ -148,7 +148,7 @@ public class MypageActivity extends AppCompatActivity {
         fruits.clear();
         price.clear();
 
-        cursor2 = sqlDB.rawQuery("SELECT * FROM stamp where stamp.useridx = "+useridx+" ;", null);
+        cursor2 = sqlDB.rawQuery("SELECT * FROM stamp where stamp.useridx = "+useridx+" order by sidx desc;", null);
         while (cursor2.moveToNext()){
             /*noticeList.add(new Notice(cursor2.getString(8),cursor2.getString(1),cursor2.getString(0)));*/
             fruits.add(cursor2.getString(2));
