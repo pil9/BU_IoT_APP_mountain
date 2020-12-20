@@ -47,6 +47,7 @@ public class NoteDetailActivity extends AppCompatActivity {
     ImageView iimg;
     EditText comment;
     static LinkedList<String> comtitle = new LinkedList();
+    static LinkedList<String> comuserid = new LinkedList();
     ListView listView;
     myAdapters adapter;
 
@@ -157,15 +158,16 @@ public class NoteDetailActivity extends AppCompatActivity {
         Cursor cursor;
 
         comtitle.clear();
-        cursor=sqlDB.rawQuery("SELECT * FROM comment WHERE noteidx="+noteidx+";",null);//select문 실행
+        cursor=sqlDB.rawQuery("SELECT * FROM comment left OUTER join member on comment.useridx = member.midx WHERE noteidx="+noteidx+";",null);//select문 실행
         String strNames="com1"+"\r\n"+"-----------------------"+"\r\n";
         String strNumbers="com2"+"\r\n"+"------------------------"+"\r\n";
         String strNumbers2="com3"+"\r\n"+"------------------------"+"\r\n";
         while (cursor.moveToNext()){//다음 레코드가 있을동안 수행
             strNames+=cursor.getString(0)+"\r\n";
             strNumbers+=cursor.getString(1)+"\r\n";
-            strNumbers2+=cursor.getString(3)+"\r\n";
+            strNumbers2+=cursor.getString(5)+"\r\n";
             comtitle.add(cursor.getString(3));
+            comuserid.add(cursor.getString(5));
         }
         //Toast.makeText(getApplicationContext(),"댓글확인.ㅂ: "+strNames+" ㅈ:"+strNumbers+" ㄷ: "+strNumbers2+"",Toast.LENGTH_LONG).show();
 
@@ -196,7 +198,7 @@ public class NoteDetailActivity extends AppCompatActivity {
             //TextView view = new TextView(getApplicationContext());
             //view.setText(fruits[position]);
             view.setFruit(comtitle.get(position));
-            //view.setPrice(price[position]);
+            view.setPrice(comuserid.get(position));
             //view.setTextSize(50.0f);
             //view.setTextColor(Color.BLUE);
             return view;

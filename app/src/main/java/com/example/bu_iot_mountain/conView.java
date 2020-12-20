@@ -16,7 +16,7 @@ public class conView extends LinearLayout {
         inflatetion_init(context);
 
         fruitTextView = (TextView)findViewById(R.id.c_name);
-        //priceTextView = (TextView)findViewById(R.id.c_address);
+        priceTextView = (TextView)findViewById(R.id.c_address);
 
     }
 
@@ -29,6 +29,6 @@ public class conView extends LinearLayout {
         fruitTextView.setText(fruit);
     }
     public void setPrice(String price){
-       // priceTextView.setText(price);
+        priceTextView.setText(price);
     }
 }
