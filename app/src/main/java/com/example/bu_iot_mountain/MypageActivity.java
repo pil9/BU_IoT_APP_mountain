@@ -92,27 +92,28 @@ public class MypageActivity extends AppCompatActivity {
         });*/
 
 
-        if(fruits.size() <= 0){
-            fruits.add("각원사 스탬프");
-            fruits.add("아라리오갤러리 스탬프");
-            fruits.add("독립기념관 스탬프");
-            fruits.add("유관순 사열지 스탬프");
-            fruits.add("백석대 스탬프");
 
-            price.add("가맹점 20% 할인");
-            price.add("티켓 10% 할인");
-            price.add("500원 기프트콘");
-            price.add("전통시장 5% 할인");
-            price.add("적립 +10%");
+       /* if(fruits.size() <= 0){
+            fruits.add("관악산 스탬프");
+            fruits.add("도봉산 스탬프");
+            fruits.add("북한산 스탬프");
+            fruits.add("수락산 스탬프");
+            fruits.add("불암산 스탬프");
+
+            price.add("등산용품 10% 할인");
+            price.add("티켓 5% 할인");
+            price.add("1000원 기프트콘");
+            price.add("입장료 5% 할인");
+            price.add("적립 +7%");
 
             iimg.add("stamp1");
             iimg.add("stamp2");
             iimg.add("stamp3");
             iimg.add("stamp4");
             iimg.add("stamp5");
-        }
+        }*/
 
-
+        mininotelist();
 
     }
 
@@ -144,10 +145,15 @@ public class MypageActivity extends AppCompatActivity {
     public void mininotelist() {
         sqlDB = myHelper.getReadableDatabase();
         Cursor cursor2;
+        fruits.clear();
+        price.clear();
 
-        cursor2 = sqlDB.rawQuery("SELECT * FROM note left OUTER join member on note.useridx=member.midx where note.useridx="+useridx+" order by nidx desc limit 5;", null);
+        cursor2 = sqlDB.rawQuery("SELECT * FROM stamp where stamp.useridx = "+useridx+" ;", null);
         while (cursor2.moveToNext()){
-            noticeList.add(new Notice(cursor2.getString(8),cursor2.getString(1),cursor2.getString(0)));
+            /*noticeList.add(new Notice(cursor2.getString(8),cursor2.getString(1),cursor2.getString(0)));*/
+            fruits.add(cursor2.getString(2));
+            price.add(cursor2.getString(3));
+
         }
 
         cursor2.close();
@@ -234,7 +240,7 @@ public class MypageActivity extends AppCompatActivity {
             //view.setText(fruits[position]);
             view.setFruit(fruits.get(position));
             view.setPrice(price.get(position));
-            view.setiimg(iimg.get(position));
+            //view.setiimg(iimg.get(position));
             //view.setTextSize(50.0f);
             //view.setTextColor(Color.BLUE);
             return view;
