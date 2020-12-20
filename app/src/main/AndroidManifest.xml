@@ -49,7 +49,8 @@
         <activity android:name=".MountListActivity"></activity>
         <activity android:name=".menuActivity"></activity>
         <activity android:name=".MypageActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".WeatherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
