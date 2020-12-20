@@ -84,7 +84,7 @@ public class MypageActivity extends AppCompatActivity {
         sqlDB = myHelper.getReadableDatabase();
         Cursor cursor2;
 
-        cursor2 = sqlDB.rawQuery("SELECT * FROM note left OUTER join member on note.useridx=member.midx order by nidx desc limit 5;", null);
+        cursor2 = sqlDB.rawQuery("SELECT * FROM note left OUTER join member on note.useridx=member.midx where note.useridx="+useridx+" order by nidx desc limit 5;", null);
         while (cursor2.moveToNext()){
             noticeList.add(new Notice(cursor2.getString(8),cursor2.getString(1),cursor2.getString(0)));
         }
@@ -113,7 +113,7 @@ public class MypageActivity extends AppCompatActivity {
         }
         double per = (double) count/mcount*100;
         int Progressnum = (int) per;
-        Toast.makeText(getApplicationContext(), "pronum: "+Progressnum, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "pronum: "+Progressnum, Toast.LENGTH_LONG).show();
         gomount.setText(per+"% 정복");//제목데이터 텍스트뷰에 넣어주기
         gomount2.setText(mcount+"개 중 "+count+"개 완주");
         progress2.setProgress(Progressnum);
