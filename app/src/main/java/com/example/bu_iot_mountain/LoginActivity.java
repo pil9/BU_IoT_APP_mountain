@@ -183,6 +183,8 @@ public class LoginActivity extends AppCompatActivity {
                     + " (mmidx INTEGER PRIMARY KEY AUTOINCREMENT , name CHAR(20) , point CHAR(20) );");
             db.execSQL("CREATE TABLE IF NOT EXISTS comment "
                     + " (cidx INTEGER PRIMARY KEY AUTOINCREMENT , useridx INTEGER , noteidx INTEGER , ccontext CHAR(20) );");
+            db.execSQL("CREATE TABLE IF NOT EXISTS stamp "
+                    + " (sidx INTEGER PRIMARY KEY AUTOINCREMENT , useridx INTEGER , stitle TEXT , scontext TEXT );");
 
         }
 

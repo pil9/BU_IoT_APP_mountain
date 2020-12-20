@@ -92,7 +92,8 @@ public class MypageActivity extends AppCompatActivity {
         });*/
 
 
-        if(fruits.size() <= 0){
+
+       /* if(fruits.size() <= 0){
             fruits.add("관악산 스탬프");
             fruits.add("도봉산 스탬프");
             fruits.add("북한산 스탬프");
@@ -110,9 +111,9 @@ public class MypageActivity extends AppCompatActivity {
             iimg.add("stamp3");
             iimg.add("stamp4");
             iimg.add("stamp5");
-        }
+        }*/
 
-
+        mininotelist();
 
     }
 
@@ -144,10 +145,15 @@ public class MypageActivity extends AppCompatActivity {
     public void mininotelist() {
         sqlDB = myHelper.getReadableDatabase();
         Cursor cursor2;
+        fruits.clear();
+        price.clear();
 
-        cursor2 = sqlDB.rawQuery("SELECT * FROM note left OUTER join member on note.useridx=member.midx where note.useridx="+useridx+" order by nidx desc limit 5;", null);
+        cursor2 = sqlDB.rawQuery("SELECT * FROM stamp where stamp.useridx = "+useridx+" ;", null);
         while (cursor2.moveToNext()){
-            noticeList.add(new Notice(cursor2.getString(8),cursor2.getString(1),cursor2.getString(0)));
+            /*noticeList.add(new Notice(cursor2.getString(8),cursor2.getString(1),cursor2.getString(0)));*/
+            fruits.add(cursor2.getString(2));
+            price.add(cursor2.getString(3));
+
         }
 
         cursor2.close();
@@ -234,7 +240,7 @@ public class MypageActivity extends AppCompatActivity {
             //view.setText(fruits[position]);
             view.setFruit(fruits.get(position));
             view.setPrice(price.get(position));
-            view.setiimg(iimg.get(position));
+            //view.setiimg(iimg.get(position));
             //view.setTextSize(50.0f);
             //view.setTextColor(Color.BLUE);
             return view;
