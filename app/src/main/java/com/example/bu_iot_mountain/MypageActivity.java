@@ -147,12 +147,14 @@ public class MypageActivity extends AppCompatActivity {
         Cursor cursor2;
         fruits.clear();
         price.clear();
-
+        int simgaddress = 0;
         cursor2 = sqlDB.rawQuery("SELECT * FROM stamp where stamp.useridx = "+useridx+" order by sidx desc;", null);
         while (cursor2.moveToNext()){
             /*noticeList.add(new Notice(cursor2.getString(8),cursor2.getString(1),cursor2.getString(0)));*/
             fruits.add(cursor2.getString(2));
             price.add(cursor2.getString(3));
+            simgaddress++;
+            iimg.add("stamplogo"+simgaddress);
 
         }
 
@@ -240,7 +242,7 @@ public class MypageActivity extends AppCompatActivity {
             //view.setText(fruits[position]);
             view.setFruit(fruits.get(position));
             view.setPrice(price.get(position));
-            //view.setiimg(iimg.get(position));
+            view.setiimg(iimg.get(position));
             //view.setTextSize(50.0f);
             //view.setTextColor(Color.BLUE);
             return view;

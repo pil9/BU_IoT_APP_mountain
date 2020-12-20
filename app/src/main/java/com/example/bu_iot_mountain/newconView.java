@@ -37,8 +37,8 @@ public class newconView extends LinearLayout {
     }
     public void setiimg(String iimg){
 
-        //String pak_name = context.getPackageName();
-        //int resID = context.getResources().getIdentifier(iimg, "drawable",pak_name);
-        //iimgImgView.setImageResource(resID);
+        String pak_name = context.getPackageName();
+        int resID = context.getResources().getIdentifier(iimg, "drawable",pak_name);
+        iimgImgView.setImageResource(resID);
     }
 }
