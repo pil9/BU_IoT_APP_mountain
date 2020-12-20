@@ -1,6 +1,7 @@
 package com.example.bu_iot_mountain;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,11 +13,13 @@ public class newconView extends LinearLayout {
     ImageView iimgImgView;
 
     private static Context context;
+    private static final String TAG = "newconView";//Log사용을 위해서 로그 태그 설정
 
 
     public newconView(Context context) {
         super(context);
         inflatetion_init(context);
+        this.context = context;
 
         fruitTextView = (TextView)findViewById(R.id.c_name);
         priceTextView = (TextView)findViewById(R.id.c_address);
@@ -36,9 +39,9 @@ public class newconView extends LinearLayout {
         priceTextView.setText(price);
     }
     public void setiimg(String iimg){
-
+        Log.d(TAG, "context변환 :  "+context);
         String pak_name = context.getPackageName();
-        int resID = context.getResources().getIdentifier(iimg, "drawable","com.example.bu_iot_mountain");
+        int resID = context.getResources().getIdentifier(iimg, "drawable",pak_name);
         iimgImgView.setImageResource(resID);
     }
 }

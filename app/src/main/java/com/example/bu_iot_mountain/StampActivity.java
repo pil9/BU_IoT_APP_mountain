@@ -50,6 +50,7 @@ public class StampActivity extends AppCompatActivity {
                 //Cursor cursor2;
                 fruits.clear();
                 price.clear();
+                iimg.clear();
 
                 sqlDB.execSQL("INSERT INTO stamp VALUES(null,'" + useridx + "','"
                         + stamp_data + "','산장 20% 할인');");

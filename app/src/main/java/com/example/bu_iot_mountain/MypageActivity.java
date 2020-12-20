@@ -92,27 +92,6 @@ public class MypageActivity extends AppCompatActivity {
         });*/
 
 
-
-       /* if(fruits.size() <= 0){
-            fruits.add("관악산 스탬프");
-            fruits.add("도봉산 스탬프");
-            fruits.add("북한산 스탬프");
-            fruits.add("수락산 스탬프");
-            fruits.add("불암산 스탬프");
-
-            price.add("등산용품 10% 할인");
-            price.add("티켓 5% 할인");
-            price.add("1000원 기프트콘");
-            price.add("입장료 5% 할인");
-            price.add("적립 +7%");
-
-            iimg.add("stamp1");
-            iimg.add("stamp2");
-            iimg.add("stamp3");
-            iimg.add("stamp4");
-            iimg.add("stamp5");
-        }*/
-
         mininotelist();
 
     }
@@ -147,6 +126,7 @@ public class MypageActivity extends AppCompatActivity {
         Cursor cursor2;
         fruits.clear();
         price.clear();
+        iimg.clear();
         int simgaddress = 0;
         cursor2 = sqlDB.rawQuery("SELECT * FROM stamp where stamp.useridx = "+useridx+" order by sidx desc;", null);
         while (cursor2.moveToNext()){
