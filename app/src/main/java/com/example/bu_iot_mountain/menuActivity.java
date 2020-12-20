@@ -14,30 +14,37 @@ public class menuActivity extends AppCompatActivity {
     }
 
     public void gonotelist(View v){
-        finish();
+
         Intent i1;
         i1 = new Intent(this, MountListActivity.class);
         startActivity(i1);
     }
 
     public void noteinsert(View v){
-        finish();
+
         Intent i1;
         i1 = new Intent(this, NoteInsetActivity.class);
         startActivity(i1);
     }
 
     public void gomypage(View v) {
-        finish();
+
         Intent i1;
         i1 = new Intent(this, MypageActivity.class);
         startActivity(i1);
     }
 
     public void mymount(View v){
-        finish();
+
         Intent i1;
         i1 = new Intent(this, Myuplist.class);
+        startActivity(i1);
+    }
+
+    public void goqrcode(View v){
+
+        Intent i1;
+        i1 = new Intent(this, QRcodeActivity.class);
         startActivity(i1);
     }
 
