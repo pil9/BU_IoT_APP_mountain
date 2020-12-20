@@ -47,6 +47,7 @@
         <activity android:name=".NoteInsetActivity" />
         <activity android:name=".NoteListActivity" />
         <activity android:name=".MountListActivity"></activity>
+        <activity android:name=".menuActivity"></activity>
         <activity android:name=".MypageActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
