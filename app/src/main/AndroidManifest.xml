@@ -46,7 +46,11 @@
         <activity android:name=".MountListActivity" />
         <activity android:name=".menuActivity" />
         <activity android:name=".MypageActivity" />
+        <activity android:name=".QRcodeActivity" />
+        <activity android:name=".CaptureAct" />
+        <activity android:name=".StampActivity" />
         <activity android:name=".LoginActivity" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
