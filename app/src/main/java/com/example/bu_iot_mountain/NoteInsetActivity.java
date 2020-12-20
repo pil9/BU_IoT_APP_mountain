@@ -102,9 +102,11 @@ public class NoteInsetActivity extends AppCompatActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_btn1:
+                finish();
                 Intent i1;
                 i1 = new Intent(this, menuActivity.class);
                 startActivity(i1);
+
                 return true;
 
             default:
@@ -267,6 +269,7 @@ public class NoteInsetActivity extends AppCompatActivity {
 
 
     public void gomypage(View v) {
+        finish();
         Intent i1;
         i1 = new Intent(this, MypageActivity.class);
         startActivity(i1);

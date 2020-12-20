@@ -8,8 +8,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -33,6 +37,13 @@ public class MypageActivity extends AppCompatActivity {
     private NoticeListAdt Adapter;
     private static final String TAG = "MypageActivity";//Log사용을 위해서 로그 태그 설정
 
+    static LinkedList<String> fruits = new LinkedList();
+    static LinkedList<String> price = new LinkedList();
+    static LinkedList<String> iimg = new LinkedList();
+
+    ListView listView;
+    MypageActivity.myAdapters adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +58,10 @@ public class MypageActivity extends AppCompatActivity {
         clearpersent();
 
         noticeListView = (ListView) findViewById(R.id.listview1);
-        Adapter = new NoticeListAdt(getApplicationContext(), noticeList);
+        adapter = new myAdapters();
+        noticeListView.setAdapter(adapter);
+
+        /*Adapter = new NoticeListAdt(getApplicationContext(), noticeList);
         noticeListView.setAdapter(Adapter);
         mininotelist();
         noticeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -69,16 +83,63 @@ public class MypageActivity extends AppCompatActivity {
 
                 //TextView nnnidx =(TextView)findViewById(R.id.dateText);
                 //String nsidx = nnnidx.getText().toString();
-                /*Intent i1;
+                *//*Intent i1;
                 i1 = new Intent(this, NoteDetailActivity.class);
-                i1.putExtra("detailnidx", nsidx);*/
+                i1.putExtra("detailnidx", nsidx);*//*
                 startActivity(intent);
 
             }
-        });
+        });*/
+
+
+        if(fruits.size() <= 0){
+            fruits.add("각원사 스탬프");
+            fruits.add("아라리오갤러리 스탬프");
+            fruits.add("독립기념관 스탬프");
+            fruits.add("유관순 사열지 스탬프");
+            fruits.add("백석대 스탬프");
+
+            price.add("가맹점 20% 할인");
+            price.add("티켓 10% 할인");
+            price.add("500원 기프트콘");
+            price.add("전통시장 5% 할인");
+            price.add("적립 +10%");
+
+            iimg.add("stamp1");
+            iimg.add("stamp2");
+            iimg.add("stamp3");
+            iimg.add("stamp4");
+            iimg.add("stamp5");
+        }
+
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_btn1:
+                finish();
+                Intent i1;
+                i1 = new Intent(this, menuActivity.class);
+                startActivity(i1);
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 
     public void mininotelist() {
         sqlDB = myHelper.getReadableDatabase();
@@ -149,6 +210,36 @@ public class MypageActivity extends AppCompatActivity {
         startActivity(i1);
     }*/
 
+    class myAdapters extends BaseAdapter {
+        @Override
+        public int getCount() {
+            return fruits.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return fruits.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            newconView view = new newconView(getApplicationContext());
+
+            //TextView view = new TextView(getApplicationContext());
+            //view.setText(fruits[position]);
+            view.setFruit(fruits.get(position));
+            view.setPrice(price.get(position));
+            view.setiimg(iimg.get(position));
+            //view.setTextSize(50.0f);
+            //view.setTextColor(Color.BLUE);
+            return view;
+        }
+    }
 
 
 
