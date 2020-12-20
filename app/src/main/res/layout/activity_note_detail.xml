@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0sp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="0.0126"
         android:text="⛰️등산게시물 "
         android:textAlignment="center"
@@ -26,8 +26,7 @@
         android:layout_gravity="center"
         android:text="제목"
         android:textSize="30dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         >
 
     </TextView>
@@ -36,10 +35,11 @@
         android:id="@+id/context"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="0.015"
+        android:layout_weight="0.018"
         android:layout_gravity="center"
         android:text="내용"
-        android:textSize="25dp"
+        android:textSize="20dp"
+        android:layout_marginBottom="0dp"
         >
 
     </TextView>
@@ -47,7 +47,7 @@
     <ImageView
         android:id="@+id/iimg"
         android:layout_width="400dp"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:layout_weight="0.03"
         android:layout_gravity="center"
         android:src="@mipmap/ic_launcher" />

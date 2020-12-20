@@ -34,4 +34,18 @@ public class menuActivity extends AppCompatActivity {
         startActivity(i1);
     }
 
+    public void mymount(View v){
+        finish();
+        Intent i1;
+        i1 = new Intent(this, Myuplist.class);
+        startActivity(i1);
+    }
+
+    public void weather(View v){
+        finish();
+        Intent i1;
+        i1 = new Intent(this, WeatherActivity.class);
+        startActivity(i1);
+    }
+
 }

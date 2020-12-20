@@ -93,17 +93,17 @@ public class MypageActivity extends AppCompatActivity {
 
 
         if(fruits.size() <= 0){
-            fruits.add("각원사 스탬프");
-            fruits.add("아라리오갤러리 스탬프");
-            fruits.add("독립기념관 스탬프");
-            fruits.add("유관순 사열지 스탬프");
-            fruits.add("백석대 스탬프");
+            fruits.add("관악산 스탬프");
+            fruits.add("도봉산 스탬프");
+            fruits.add("북한산 스탬프");
+            fruits.add("수락산 스탬프");
+            fruits.add("불암산 스탬프");
 
-            price.add("가맹점 20% 할인");
-            price.add("티켓 10% 할인");
-            price.add("500원 기프트콘");
-            price.add("전통시장 5% 할인");
-            price.add("적립 +10%");
+            price.add("등산용품 10% 할인");
+            price.add("티켓 5% 할인");
+            price.add("1000원 기프트콘");
+            price.add("입장료 5% 할인");
+            price.add("적립 +7%");
 
             iimg.add("stamp1");
             iimg.add("stamp2");

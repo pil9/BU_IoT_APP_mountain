@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -151,6 +152,9 @@ public class NoteDetailActivity extends AppCompatActivity {
         //insert문으로 댓글  추가
         sqlDB.close();
         Toast.makeText(getApplicationContext(), "댓글등록 완료! ", Toast.LENGTH_LONG).show();
+        comment.setText(null);
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(comment.getWindowToken(), 0);
         commentlist();
     }
 
@@ -170,6 +174,7 @@ public class NoteDetailActivity extends AppCompatActivity {
             strNumbers2+=cursor.getString(5)+"\r\n";
             comtitle.add(cursor.getString(3));
             comuserid.add(cursor.getString(5));
+
         }
         //Toast.makeText(getApplicationContext(),"댓글확인.ㅂ: "+strNames+" ㅈ:"+strNumbers+" ㄷ: "+strNumbers2+"",Toast.LENGTH_LONG).show();
 
