@@ -52,11 +52,11 @@ public class LoginActivity extends AppCompatActivity {
         if(cursor.getCount() == 0) {
             //산 데이터 삽입
             sqlDB = myHelper.getWritableDatabase();//쓰기전용db열기
-            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'관악산','서울특별시');");
-            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'도봉산','서울특별시');");
-            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'북한산','서울특별시');");
-            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'수락산','서울특별시');");
-            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'불암산','서울특별시');");
+            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'한라산','제주도');");
+            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'북한산','서울특별시/경기도');");
+            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'덕유산','전라북도 무주군/경상남도');");
+            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'지리산','경상남도 함양군/전라남도');");
+            sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'설악산','강원도 속초시');");
             //insert문으로 회원 추가
             Toast.makeText(getApplicationContext(), "산목록 추가 ", Toast.LENGTH_LONG).show();
             sqlDB.close();
