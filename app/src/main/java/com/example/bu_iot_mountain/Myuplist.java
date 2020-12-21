@@ -1,5 +1,6 @@
 package com.example.bu_iot_mountain;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
@@ -25,7 +26,8 @@ public class Myuplist extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myuplist);
-
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("\uD83C\uDFD5정복리스트");
         myHelper=new LoginActivity.myDBHelper(this);
 
         noticeListView = (ListView) findViewById(R.id.noticeListView);

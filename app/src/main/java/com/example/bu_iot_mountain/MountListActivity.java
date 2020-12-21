@@ -1,5 +1,6 @@
 package com.example.bu_iot_mountain;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -30,7 +31,8 @@ public class MountListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
-
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("\uD83D\uDDFA등산커뮤니티");
         myHelper=new LoginActivity.myDBHelper(this);
 
         /*noticeListView = (ListView) findViewById(R.id.noticeListView);

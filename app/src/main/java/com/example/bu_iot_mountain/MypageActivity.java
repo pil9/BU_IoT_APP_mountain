@@ -1,5 +1,6 @@
 package com.example.bu_iot_mountain;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -48,7 +49,8 @@ public class MypageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage);
-
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("\uD83C\uDF85마이페이지");
         myHelper=new LoginActivity.myDBHelper(this);
 
         gomount = (TextView)findViewById(R.id.gomount);

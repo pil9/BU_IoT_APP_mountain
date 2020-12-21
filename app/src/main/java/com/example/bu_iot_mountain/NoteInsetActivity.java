@@ -1,6 +1,7 @@
 package com.example.bu_iot_mountain;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -66,6 +67,8 @@ public class NoteInsetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_inset);
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("\uD83C\uDFAF등산인증");
         mWebView = (WebView) findViewById(R.id.webmap);
 
         title = (EditText) findViewById(R.id.title);
@@ -201,7 +204,7 @@ public class NoteInsetActivity extends AppCompatActivity {
         Log.d(TAG, "tableName : " + tableName);
         Log.d(TAG, "title : " + title.getText().toString());
         Log.d(TAG, "context : " + context.getText().toString());
-        Log.d(TAG, "uri : " + uri.toString());
+//        Log.d(TAG, "uri : " + uri.toString());
         Log.d(TAG, "useridx : " + useridx);
         Log.d(TAG, "mountidx : " + mountidx);
 

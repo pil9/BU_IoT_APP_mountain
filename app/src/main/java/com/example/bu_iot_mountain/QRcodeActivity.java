@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -30,7 +31,8 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q_rcode);
-
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("\uD83D\uDCF7QR정상인증");
         scanBtn = findViewById(R.id.scanBtn);
         scanBtn.setOnClickListener(this);
 

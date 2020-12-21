@@ -79,7 +79,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:background="@drawable/button_background"
-            android:text="🎁QR정상인증"
+            android:text="📷QR정상인증"
             android:onClick="goqrcode"
             />
     </LinearLayout>

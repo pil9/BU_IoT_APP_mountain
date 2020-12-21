@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="30sp"
         android:layout_weight="0.2"
-        android:text="⛰️정복리스트"
+        android:text="🏕️정복리스트"
         android:textAlignment="center"
         android:textSize="50sp"
         android:textStyle="bold" />

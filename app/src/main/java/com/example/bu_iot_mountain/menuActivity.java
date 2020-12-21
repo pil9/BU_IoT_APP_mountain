@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class menuActivity extends AppCompatActivity {
@@ -11,6 +12,9 @@ public class menuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("🏞전체메뉴");
     }
 
     public void gonotelist(View v){

@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
         sqlDB=myHelper.getReadableDatabase();
         Cursor cursor;
-        cursor=sqlDB.rawQuery("SELECT * FROM mount   ;",null);//select문 실행
+        cursor=sqlDB.rawQuery("SELECT * FROM mount;",null);//select문 실행
         Log.d(TAG,"산 있나? 카운트 "+cursor.getCount());
         if(cursor.getCount() == 0) {
             //산 데이터 삽입

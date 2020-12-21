@@ -1,5 +1,6 @@
 package com.example.bu_iot_mountain;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -50,6 +51,8 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("\uD83C\uDF24오늘의 날씨");
         location_now = (TextView) findViewById(R.id.location);
         weather_now = (TextView) findViewById(R.id.weather);
         temp_now = (TextView) findViewById(R.id.temp);
