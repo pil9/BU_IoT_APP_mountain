@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'지리산','경상남도 함양군/전라남도');");
             sqlDB.execSQL("INSERT INTO " + "mount" + " VALUES(null,'설악산','강원도 속초시');");
             //insert문으로 회원 추가
-            Toast.makeText(getApplicationContext(), "산목록 추가 ", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(), "산목록 추가 ", Toast.LENGTH_LONG).show();
             sqlDB.close();
             cursor.close();
         }
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.d(TAG,"아이디 없다 ");
             cursor.close();
             sqlDB.close();
-            Toast.makeText(getApplicationContext(),"등록되지 않음 정보입니다 .",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"등록되지 않은 정보입니다 .",Toast.LENGTH_LONG).show();
         }
         else{//getCount가 0이 아니면 일치하는 정보있음 로그인 성공
             cursor.moveToFirst();
@@ -108,11 +108,11 @@ public class LoginActivity extends AppCompatActivity {
             Log.d(TAG,"로그인 유저 인덱스값: "+useridx);
             cursor.close();
             sqlDB.close();
-            Toast.makeText(getApplicationContext(),"로그인 성공 .",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"로그인 성공!",Toast.LENGTH_LONG).show();
 
             /*마이페이지로 화면이동*/
             Intent i1;
-            i1 = new Intent(this, MypageActivity.class);
+            i1 = new Intent(this, menuActivity.class);
             startActivity(i1);
 
         }

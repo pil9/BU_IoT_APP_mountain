@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".JoinActivity"
     android:orientation="vertical"
-    android:background="#C5C1C1">
+
+    android:background="@drawable/background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +29,8 @@
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="50sp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/godob"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -38,10 +40,10 @@
                 android:layout_marginBottom="10sp"
                 android:layout_weight="0"
                 android:text="회원가입"
+                android:fontFamily="@font/godob"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="24sp" />
 
         </LinearLayout>
 
@@ -103,6 +105,8 @@
                 android:background="@drawable/edit_background"
                 android:layout_marginBottom="20sp"
                 android:padding="13dp"
+                android:drawableStart="@drawable/ic_baseline_account_box_24"
+                android:drawableLeft="@drawable/ic_baseline_account_box_24"
                 android:hint=" 이름"
                 android:inputType="textPersonName" />
 
@@ -114,7 +118,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:background="@drawable/button_background"
-                android:text="가입"
+                android:text="회원가입"
+
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:onClick="members"/>
