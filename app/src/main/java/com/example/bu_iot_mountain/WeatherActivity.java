@@ -18,8 +18,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,23 +50,36 @@ public class WeatherActivity extends AppCompatActivity {
     TextView temp_now;
     ImageView imageView;
     Bitmap bitmap;
+    Spinner spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
         ActionBar ab = getSupportActionBar();
         ab.setTitle("\uD83C\uDF24오늘의 날씨");
+        final String[] mountain = {"북한산","한라산","지리산","설악산","덕유산"};
         location_now = (TextView) findViewById(R.id.location);
         weather_now = (TextView) findViewById(R.id.weather);
         temp_now = (TextView) findViewById(R.id.temp);
         imageView = (ImageView)findViewById(R.id.weatherimg);
-        sendData(); // 웹 서버로 데이터 전송
+        spinner= (Spinner)findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,mountain);
+        spinner.setAdapter(adapter);
+        sendData("서울");
+
+
+//        sendData(); // 웹 서버로 데이터 전송
 
         Button button = (Button) findViewById(R.id.weather1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendData();
+//                spinner= (Spinner)findViewById(R.id.spinner);
+                String mountain_name = spinner.getSelectedItem().toString();
+                Toast.makeText(WeatherActivity.this,mountain_name,Toast.LENGTH_LONG).show();
+                sendData(mountain_name);
 
             }
         });
@@ -73,9 +89,9 @@ public class WeatherActivity extends AppCompatActivity {
         new Thread() {
             public void run() {
                 try{
-                    Log.d(TAG, "imgid값2:" + imgid);
+//                    Log.d(TAG, "imgid값2:" + imgid);
                     URL url = new URL("https://openweathermap.org/img/wn/"+imgid+"@4x.png");
-                    Log.d(TAG, "URL값:" + url);
+//                    Log.d(TAG, "URL값:" + url);
                     HttpURLConnection conn = (HttpURLConnection)url.openConnection();
                     conn.setDoInput(true); //Server 통신에서 입력 가능한 상태로 만듦
                     conn.connect(); //연결된 곳에 접속할 때 (connect() 호출해야 실제 통신 가능함)
@@ -93,10 +109,10 @@ public class WeatherActivity extends AppCompatActivity {
         imageView.setImageBitmap(bitmap);
     }
 
-    public void sendData() {
+    public void sendData(final String mountain_name) {
         new Thread() {
             public void run() {
-                httpConn.requestWebServer(callback);
+                httpConn.requestWebServer(callback,mountain_name);
 
             }
         }.start();
@@ -156,7 +172,7 @@ public class WeatherActivity extends AppCompatActivity {
             if (location.equals("Cheonan")) {
                 location = "천안시";
             }
-            location_now.setText(location);
+            location_now.setText(spinner.getSelectedItem().toString());
             weather_now.setText(weather_name);
             temp_now.setText(temp);
 
