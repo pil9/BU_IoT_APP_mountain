@@ -31,6 +31,7 @@
 
 
     <Button
+        android:id="@+id/myuplistback"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="0.05"
@@ -41,7 +42,6 @@
         android:text="뒤로"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:onClick="gomypage"
         android:layout_marginBottom="30dp"/>
 
 
