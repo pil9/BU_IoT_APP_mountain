@@ -14,7 +14,7 @@ public class NoteListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_note_list);
     }
 
-    public void gomypage(View v){
+    public void gomypagef(View v){
         Intent i1;
         i1 = new Intent(this, menuActivity.class);
         startActivity(i1);

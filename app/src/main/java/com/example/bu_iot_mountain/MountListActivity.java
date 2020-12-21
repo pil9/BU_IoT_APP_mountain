@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class MountListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_note_list);
         ActionBar ab = getSupportActionBar();
         ab.setTitle("\uD83D\uDDFA등산커뮤니티");
@@ -67,6 +69,15 @@ public class MountListActivity extends AppCompatActivity {
             }
         });
 
+        Button btn = (Button)findViewById(R.id.mountback);
+        btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i1;
+                i1 = new Intent(getApplicationContext(), menuActivity.class);
+                startActivity(i1);
+            }
+        });
 
     }
 
@@ -84,12 +95,8 @@ public class MountListActivity extends AppCompatActivity {
 
     }
 
-    public void gomypage(View v){
-        finish();
-        Intent i1;
-        i1 = new Intent(this, menuActivity.class);
-        startActivity(i1);
-    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

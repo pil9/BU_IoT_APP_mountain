@@ -40,7 +40,6 @@
         android:text="뒤로"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:onClick="gomypage"
         android:layout_marginBottom="30dp"/>
 
 
