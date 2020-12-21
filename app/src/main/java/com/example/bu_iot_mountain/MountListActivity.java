@@ -87,7 +87,7 @@ public class MountListActivity extends AppCompatActivity {
     public void gomypage(View v){
         finish();
         Intent i1;
-        i1 = new Intent(this, MypageActivity.class);
+        i1 = new Intent(this, menuActivity.class);
         startActivity(i1);
     }
 
