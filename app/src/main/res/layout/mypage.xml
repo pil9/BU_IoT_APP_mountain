@@ -15,9 +15,10 @@
         android:layout_marginTop="30sp"
         android:layout_weight="0.3"
         android:text="⛰️올라가봤니?"
+        android:textColor="#000000"
+        android:fontFamily="@font/godob"
         android:textAlignment="center"
         android:textSize="50sp"
-        android:textStyle="bold"
         />
 
 
@@ -35,7 +36,8 @@
             android:text="60% 정복!"
             android:textAlignment="center"
             android:textSize="28sp"
-            android:textStyle="bold"
+            android:textColor="#000000"
+            android:fontFamily="@font/godob"
             android:onClick="gomountlist"
             android:id="@+id/gomount"/>
 
@@ -46,7 +48,8 @@
             android:text="100개 중 60개 완주"
             android:textAlignment="center"
             android:textSize="28sp"
-            android:textStyle="bold"
+            android:textColor="#000000"
+            android:fontFamily="@font/godob"
             android:onClick="gomountlist"
             android:id="@+id/gomount2"/>
 

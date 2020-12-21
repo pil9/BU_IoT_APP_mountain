@@ -53,7 +53,6 @@ public class menuActivity extends AppCompatActivity {
     }
 
     public void weather(View v){
-        finish();
         Intent i1;
         i1 = new Intent(this, WeatherActivity.class);
         startActivity(i1);

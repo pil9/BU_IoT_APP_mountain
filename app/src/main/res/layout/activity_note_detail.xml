@@ -16,7 +16,9 @@
         android:text="⛰️등산게시물 "
         android:textAlignment="center"
         android:textSize="50sp"
-        android:textStyle="bold" />
+        android:textColor="#000000"
+        android:fontFamily="@font/godob"
+        />
 
     <TextView
         android:id="@+id/title"
@@ -25,6 +27,8 @@
         android:layout_weight="0.01"
         android:layout_gravity="center"
         android:text="제목"
+        android:textColor="#000000"
+        android:fontFamily="@font/godob"
         android:textSize="30dp"
         android:layout_marginTop="8dp"
         >
@@ -38,6 +42,8 @@
         android:layout_weight="0.018"
         android:layout_gravity="center"
         android:text="내용"
+        android:textColor="#000000"
+        android:fontFamily="@font/godob"
         android:textSize="20dp"
         android:layout_marginBottom="0dp"
         >

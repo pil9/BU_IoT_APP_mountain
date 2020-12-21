@@ -9,6 +9,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -77,9 +79,8 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
                     public void onClick(DialogInterface dialogInterface, int i) {
                         scanCode();
                     }
-                }).setPositiveButton("저장!", new DialogInterface.OnClickListener() {
+                }).setPositiveButton("닫기", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-
                         finish();
 
                     }
@@ -109,6 +110,28 @@ public class QRcodeActivity extends AppCompatActivity implements View.OnClickLis
 
         }
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_btn1:
+                finish();
+                Intent i1;
+                i1 = new Intent(this, menuActivity.class);
+                startActivity(i1);
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

@@ -16,7 +16,9 @@
         android:text="🏕️정복리스트"
         android:textAlignment="center"
         android:textSize="50sp"
-        android:textStyle="bold" />
+        android:textColor="#000000"
+        android:fontFamily="@font/godob"
+         />
 
     <ListView
         android:id="@+id/noticeListView"

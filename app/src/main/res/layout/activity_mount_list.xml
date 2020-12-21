@@ -14,9 +14,11 @@
         android:layout_marginTop="30sp"
         android:layout_weight="0.2"
         android:text="⛰️정복리스트"
+        android:textColor="#000000"
+        android:fontFamily="@font/godob"
         android:textAlignment="center"
         android:textSize="50sp"
-        android:textStyle="bold" />
+         />
 
     <ListView
         android:id="@+id/listview1"

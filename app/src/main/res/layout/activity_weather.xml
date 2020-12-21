@@ -14,10 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="🌤오늘의 날씨"
-        android:textStyle="bold"
         android:background="@drawable/round_border"
         android:textSize="40dp"
-
+        android:textColor="#000000"
+        android:fontFamily="@font/godob"
         android:layout_margin="20dp"
         android:gravity="center"/>
 
@@ -96,7 +96,7 @@
     </LinearLayout>
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"

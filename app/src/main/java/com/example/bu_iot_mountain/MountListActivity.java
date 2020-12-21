@@ -34,7 +34,7 @@ public class MountListActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_note_list);
         ActionBar ab = getSupportActionBar();
-        ab.setTitle("\uD83D\uDDFA등산커뮤니티");
+        ab.setTitle("💬등산커뮤니티");
         myHelper=new LoginActivity.myDBHelper(this);
 
         /*noticeListView = (ListView) findViewById(R.id.noticeListView);
