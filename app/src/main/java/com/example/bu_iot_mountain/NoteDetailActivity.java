@@ -164,6 +164,7 @@ public class NoteDetailActivity extends AppCompatActivity {
         Cursor cursor;
 
         comtitle.clear();
+        comuserid.clear();
         cursor=sqlDB.rawQuery("SELECT * FROM comment left OUTER join member on comment.useridx = member.midx WHERE noteidx="+noteidx+";",null);//select문 실행
         String strNames="com1"+"\r\n"+"-----------------------"+"\r\n";
         String strNumbers="com2"+"\r\n"+"------------------------"+"\r\n";
