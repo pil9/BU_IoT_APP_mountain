@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Id = (EditText) findViewById(R.id.idText);
         Pass = (EditText) findViewById(R.id.editTextTextPassword);
+        useridx = 0;//유저useridx 초기화
 
         //Id = idText.getText().toString();
         //Pass = editTextTextPassword.getText().toString();

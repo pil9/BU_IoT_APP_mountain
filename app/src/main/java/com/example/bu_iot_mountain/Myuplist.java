@@ -14,6 +14,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.bu_iot_mountain.LoginActivity.useridx;
+
 public class Myuplist extends AppCompatActivity {
 
     LoginActivity.myDBHelper myHelper;
@@ -53,8 +55,8 @@ public class Myuplist extends AppCompatActivity {
     public void mininotelist() {
         sqlDB = myHelper.getReadableDatabase();
         Cursor cursor2;
-
-        cursor2 = sqlDB.rawQuery("SELECT * FROM note left OUTER join mount on note.mountidx=mount.mmidx group by note.mountidx;", null);
+        noticeList.clear();
+        cursor2 = sqlDB.rawQuery("SELECT * FROM note left OUTER join mount on note.mountidx=mount.mmidx where note.useridx = "+useridx+"  group by note.mountidx;", null);
         while (cursor2.moveToNext()){
             noticeList.add(new Notice(cursor2.getString(8),cursor2.getString(8),cursor2.getString(0)));
         }
